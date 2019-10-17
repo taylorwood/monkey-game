@@ -1,7 +1,6 @@
 (ns monkey-game.core
   (:require [quil.core :as q]
-            [quil.middleware :as m]
-            [clojure.java.io :as io]))
+            [quil.middleware :as m]))
 
 (defn setup []
   (q/frame-rate 30)
@@ -17,7 +16,7 @@
     [{:x -100 :y (/ (q/width) 4) :angle 0}]
     (seq bs)
     (->> bs
-         (remove #(<= (q/width) (- (:x %) 100)))
+         (remove #(<= (q/width) (:x %)))
          (map (fn [b]
                 (-> b
                     (update :angle #(mod (+ 0.2 %) 360))
